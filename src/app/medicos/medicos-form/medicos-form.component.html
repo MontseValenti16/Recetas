@@ -1,0 +1,19 @@
+<h1>Registro de Médicos</h1>
+<form [formGroup]="medicoForm" (ngSubmit)="onSubmit()">
+  <label for="nombre">Nombre:</label>
+  <input id="nombre" formControlName="nombre" />
+
+  <label for="especialidad">Especialidad:</label>
+  <input id="especialidad" formControlName="especialidad" />
+
+  <label for="email">Correo Electrónico:</label>
+  <input id="email" formControlName="email" />
+
+  <label for="telefono">Teléfono:</label>
+  <input id="telefono" formControlName="telefono" />
+
+  <label for="cedula">Cédula Médica:</label>
+  <input id="cedula" formControlName="cedula" />
+
+  <button type="submit">Guardar</button>
+</form>

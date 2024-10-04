@@ -1,0 +1,16 @@
+<h2>Lista de Médicos</h2>
+<div *ngFor="let medico of medicos" class="medico-card">
+  <div class="medico-info">
+    <strong>Nombre:</strong> {{ medico.nombre }}<br />
+    <strong>Especialidad:</strong> {{ medico.especialidad }}<br />
+    <strong>Correo Electrónico:</strong> {{ medico.email }}<br />
+    <strong>Teléfono:</strong> {{ medico.telefono }}<br />
+    <strong>Cédula Médica:</strong> {{ medico.cedula }}<br />
+  </div>
+  <div>
+    <button (click)="editarMedico(medico)">Editar</button>
+    <button (click)="eliminarMedico(medico.id)">Eliminar</button>
+  </div>
+</div>
+
+<p *ngIf="medicos.length === 0">No hay médicos registrados.</p>
