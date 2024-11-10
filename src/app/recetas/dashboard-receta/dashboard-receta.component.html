@@ -1,0 +1,30 @@
+<div class="receta-container">
+  <div class="receta-header">
+    <a [routerLink]="['']" routerLinkActive="router-link-active">
+      <img src="/logoM.jpg" alt="Logo" class="logo">
+    </a>
+    <h1 class="receta-title">Medical Description Generator</h1>
+  </div>
+
+  <h2 class="receta-subtitle">Recetas médicas</h2>
+
+  <div *ngFor="let group of pacientesConMedicamentos" >
+    <div>
+      <p><strong>Paciente:</strong> {{group.paciente.Paciente}}</p>
+      <p><strong>Edad:</strong> {{group.paciente.edad}}</p>
+      <p><strong>Sexo:</strong> {{group.paciente.sexo}}</p>
+      <p><strong>Enfermedad:</strong> {{group.paciente.Enfermedad}}</p>
+    </div>
+    <div>
+      <h4>Medicamentos:</h4>
+      <div *ngFor="let medicamento of group.medicamentos">
+        <p><strong>Nombre:</strong> {{medicamento.Medicamento}}</p>
+        <p><strong>Dosis:</strong> {{medicamento.dosis}}</p>
+        <p><strong>Presentación:</strong> {{medicamento.presentacion}}</p>
+        <p><strong>Cantidad:</strong> {{medicamento.cantidad}}</p>
+      </div>
+    </div>
+    <button (click)="generarPDF(group.paciente, group.medicamentos)">Generar PDF</button>
+    <hr />
+  </div>
+</div>

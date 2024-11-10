@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MedicoService } from '../../services/medico.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Medico } from '../../../models/medico.model';
+import { Paciente } from '../../../models/paciente.model';
 
 @Component({
   selector: 'app-medicos-form',
@@ -10,43 +9,54 @@ import { Medico } from '../../../models/medico.model';
   styleUrls: ['./medicos-form.component.css']
 })
 export class MedicosFormComponent implements OnInit {
-  medicoForm: FormGroup;
-  medicoEditando: Medico | null = null;
+  nuevoPaciente: Paciente = {
+    id: 0,
+    nombre: '',
+    email: '',
+    edad: 0,
+    sexo: '',
+    telefono: ''
+  };
+  isEditMode = false;
 
   constructor(
-    private medicoService: MedicoService,
-    private fb: FormBuilder,
-    private router: Router
-  ) {
-    this.medicoForm = this.fb.group({
-      nombre: ['', Validators.required],
-      especialidad: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      telefono: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
-      cedula: ['', Validators.required],
+    private pacienteService: MedicoService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      if (params['id']) {
+        this.isEditMode = true;
+        const id = +params['id'];
+        this.pacienteService.obtenerMedicoPorId(id).subscribe(
+          (paciente) => {
+            this.nuevoPaciente = paciente;
+          },
+          (error) => console.error('Error al obtener el paciente: ', error)
+        );
+      }
     });
   }
 
-  ngOnInit(): void {
-    const medico = history.state.medico as Medico;
-    if (medico) {
-      this.medicoEditando = medico;
-      this.medicoForm.patchValue(medico);
-      console.log(history.state.medico);
-    }
-  }
-
-  onSubmit() {
-    if (this.medicoForm.valid) {
-      if (this.medicoEditando) {
-        const medicoActualizado = { ...this.medicoEditando, ...this.medicoForm.value };
-        this.medicoService.updateMedico(medicoActualizado);
-      } else {
-        this.medicoService.addMedico(this.medicoForm.value);
-      }
-
-      this.medicoForm.reset();
-      this.router.navigate(['/lista-medicos']);
+  agregarMedico(): void {
+    if (this.isEditMode) {
+      this.pacienteService.editarMedico(this.nuevoPaciente.id, this.nuevoPaciente).subscribe(
+        (response) => {
+          console.log('Paciente actualizado:', response);
+          this.router.navigate(['medicos-list']);
+        },
+        (error) => console.error('Error al actualizar paciente: ', error)
+      );
+    } else {
+      this.pacienteService.agregarMedico(this.nuevoPaciente).subscribe(
+        (response) => {
+          console.log('Nuevo paciente agregado:', response);
+          this.router.navigate(['medicos-list']);
+        },
+        (error) => console.error('Error al agregar paciente: ', error)
+      );
     }
   }
 }

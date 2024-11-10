@@ -1,8 +1,8 @@
 export interface Paciente {
-  id: number;
-  nombre: string;
-  apellidos: string;
-  edad: number;
-  telefono: string;
-  direccion: string;
+  id: number,
+  nombre: string,
+  email: string,
+  edad: number,
+  sexo : string,
+  telefono: string
 }

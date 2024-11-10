@@ -1,16 +1,18 @@
-<h2>Lista de Médicos</h2>
-<div *ngFor="let medico of medicos" class="medico-card">
-  <div class="medico-info">
-    <strong>Nombre:</strong> {{ medico.nombre }}<br />
-    <strong>Especialidad:</strong> {{ medico.especialidad }}<br />
-    <strong>Correo Electrónico:</strong> {{ medico.email }}<br />
-    <strong>Teléfono:</strong> {{ medico.telefono }}<br />
-    <strong>Cédula Médica:</strong> {{ medico.cedula }}<br />
+<div class="medicos-list-container">
+  <div class="header">
+    <a [routerLink]="['']" routerLinkActive="router-link-active">
+      <img src="/logoM.jpg" alt="Logo" class="logo">
+    </a>
+    <h1>Medical Description Generator</h1>
   </div>
-  <div>
-    <button (click)="editarMedico(medico)">Editar</button>
-    <button (click)="eliminarMedico(medico.id)">Eliminar</button>
+  <h2>Lista de Pacientes</h2>
+  <div *ngFor="let paciente of pacientes; let i = index" class="medico-card">
+    <p><strong>Nombre:</strong> {{ paciente.nombre }}</p>
+    <p><strong>Email:</strong> {{ paciente.email }}</p>
+    <p><strong>Edad:</strong> {{ paciente.edad }}</p>
+    <p><strong>Sexo:</strong> {{ paciente.sexo }}</p>
+    <p><strong>Teléfono:</strong> {{ paciente.telefono }}</p>
+    <button (click)="updatePaciente(paciente)">Editar</button>
+    <button (click)="deletePaciente(paciente.id)">Eliminar</button>
   </div>
 </div>
-
-<p *ngIf="medicos.length === 0">No hay médicos registrados.</p>

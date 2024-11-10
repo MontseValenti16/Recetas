@@ -1,32 +1,50 @@
 import { Component, OnInit } from '@angular/core';
 import { MedicoService } from '../../services/medico.service';
-import { Medico } from '../../../models/medico.model';
 import { Router } from '@angular/router';
+import { Paciente } from '../../../models/paciente.model';
 
 @Component({
   selector: 'app-medicos-list',
   templateUrl: './medicos-list.component.html',
-  styleUrls: ['./medicos-list.component.css']
+  styleUrls: ['./medicos-list.component.css'],
 })
 export class MedicosListComponent implements OnInit {
-  medicos: Medico[] = [];
+  pacientes: Paciente[] = [];
+  pacienteSeleccionado: Paciente | null = null;
 
-  constructor(private medicoService: MedicoService, private router: Router) { }
+  constructor(
+    private pacienteService: MedicoService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.cargarMedicos();
+    this.obtenerPacientes();
   }
 
-  cargarMedicos() {
-    this.medicos = this.medicoService.getMedicos();
+  obtenerPacientes() {
+    this.pacienteService.obtenerMedicos().subscribe(
+      (response) => {
+        this.pacientes = response;
+      },
+      (error) => console.error('Error: ', error)
+    );
   }
 
-  editarMedico(medico: Medico) {
-    this.router.navigate(['/agregar-medico'], { state: { medico } });
+  selectPaciente(paciente: Paciente): void {
+    this.pacienteSeleccionado = { ...paciente };
   }
 
-  eliminarMedico(id: number) {
-    this.medicoService.deleteMedico(id);
-    this.cargarMedicos();
+  updatePaciente(paciente: Paciente): void {
+    this.pacienteSeleccionado = paciente;
+    this.router.navigate(['medicos-form'], { queryParams: { id: paciente.id } });
+  }
+
+  deletePaciente(id: number): void {
+    this.pacienteService.eliminarMedico(id).subscribe(
+      ()=>{
+        this.pacientes = this.pacientes.filter(user => user.id !== id)
+      },error => {console.error("Error al actualizar", error);}
+
+    )
   }
 }

@@ -1,16 +1,22 @@
+import { RegisterRecetaComponent } from './recetas/register-receta/register-receta.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PacientesListComponent } from './pacientes/pacientes-list/pacientes-list.component';
-import { PacientesFormComponent } from './pacientes/pacientes-form/pacientes-form.component';
+import { HomeComponent } from './home/home.component';
+import { MedicosFormComponent } from './medicos/medicos-form/medicos-form.component';
 import { MedicosListComponent } from './medicos/medicos-list/medicos-list.component';
 import { MedicamentosFormComponent } from './medicamentos/medicamentos-form/medicamentos-form.component';
+import { MedicamentosListComponent } from './medicamentos/medicamentos-list/medicamentos-list.component';
+import { DashboardRecetaComponent } from './recetas/dashboard-receta/dashboard-receta.component';
+
 
 const routes: Routes = [
-  { path: 'lista-medicos', component: MedicosListComponent },
-  { path: 'agregar-medico', component: MedicamentosFormComponent },
-  { path: 'lista-pacientes', component: PacientesListComponent },
-  { path: 'agregar-paciente', component: PacientesFormComponent },
-  { path: '', redirectTo: '/agregar-paciente', pathMatch: 'full' },
+  { path: '', component: HomeComponent },
+  { path: 'medicos-form', component: MedicosFormComponent},
+  { path: 'medicos-list', component: MedicosListComponent},
+  { path: 'medicamentos-form', component: MedicamentosFormComponent},
+  { path: 'medicamentos-list', component: MedicamentosListComponent},
+  { path: 'recetas-form', component: RegisterRecetaComponent},
+  { path: 'dashboard-recetas', component: DashboardRecetaComponent}
 ];
 
 

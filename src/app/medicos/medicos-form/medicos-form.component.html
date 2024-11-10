@@ -1,19 +1,36 @@
-<h1>Registro de Médicos</h1>
-<form [formGroup]="medicoForm" (ngSubmit)="onSubmit()">
-  <label for="nombre">Nombre:</label>
-  <input id="nombre" formControlName="nombre" />
+<div class="form-container">
+  <div class="header">
+    <a [routerLink]="['']" routerLinkActive="router-link-active">
+      <img src="/logoM.jpg" alt="Logo" class="logo">
+    </a>
+    <h1>Medical Description Generator</h1>
+  </div>
 
-  <label for="especialidad">Especialidad:</label>
-  <input id="especialidad" formControlName="especialidad" />
+  <div class="content">
+    <img src="/pct.png" alt="Doctor Image" class="side-image">
+    <div class="form-content">
+      <h2>Pacientes</h2>
+      <form (submit)="agregarMedico(); $event.preventDefault();">
+        <label>Nombre:</label>
+        <input type="text" [(ngModel)]="nuevoPaciente.nombre" name="nombre" required />
 
-  <label for="email">Correo Electrónico:</label>
-  <input id="email" formControlName="email" />
+        <label>Email:</label>
+        <input type="text" [(ngModel)]="nuevoPaciente.email" name="email" required />
 
-  <label for="telefono">Teléfono:</label>
-  <input id="telefono" formControlName="telefono" />
+        <label>Edad:</label>
+        <input type="text" [(ngModel)]="nuevoPaciente.edad" name="edad" required />
 
-  <label for="cedula">Cédula Médica:</label>
-  <input id="cedula" formControlName="cedula" />
+        <label>Sexo:</label>
+        <select [(ngModel)]="nuevoPaciente.sexo" name="sexo" required>
+          <option value="Mujer">Mujer</option>
+          <option value="Hombre">Hombre</option>
+        </select>
 
-  <button type="submit">Guardar</button>
-</form>
+        <label>Número telefónico:</label>
+        <input type="text" [(ngModel)]="nuevoPaciente.telefono" name="telefono" required />
+
+        <button type="submit">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>
