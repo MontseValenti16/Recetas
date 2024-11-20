@@ -1,0 +1,37 @@
+<div class="form-container">
+  <div class="header">
+    <a [routerLink]="['']" routerLinkActive="router-link-active">
+      <img src="/logoM.jpg" alt="Logo" class="logo">
+    </a>
+    <h1>Medical Description Generator</h1>
+  </div>
+  <div class="content">
+    <img src="/medicamentos.png" alt="Medicamento" class="image">
+    <form (ngSubmit)="agregarMedicamento()">
+      <h2>Medicamentos</h2>
+      <label>Nombre:</label>
+      <input type="text" [(ngModel)]="nuevoMedicamento.nombre" name="nombre" required>
+
+      <label>Dosis:</label>
+      <input type="text" [(ngModel)]="nuevoMedicamento.dosis" name="dosis" required>
+
+      <label>Presentación:</label>
+      <select [(ngModel)]="nuevoMedicamento.presentacion" name="presentacion" required>
+        <option value="Tabletas">Tabletas</option>
+        <option value="Capsular">Capsulas</option>
+        <option value="Jarabe">Jarabe</option>
+      </select>
+
+      <label>Cantidad de contenido:</label>
+      <input type="text" [(ngModel)]="nuevoMedicamento.cantidad" name="cantidad" required>
+
+      <label>Vía de administración:</label>
+      <select [(ngModel)]="nuevoMedicamento.viaAdministracion" name="viaAdministracion" required>
+        <option value="Oral">Oral</option>
+        <option value="Parenteral">Parenteral</option>
+      </select>
+
+      <button type="submit">Guardar</button>
+    </form>
+  </div>
+</div>

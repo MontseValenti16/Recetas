@@ -1,0 +1,36 @@
+<div class="form-container">
+  <div class="header">
+    <a [routerLink]="['']" routerLinkActive="router-link-active">
+      <img src="/logoM.jpg" alt="Logo" class="logo">
+    </a>
+    <h1>Medical Description Generator</h1>
+  </div>
+
+  <div class="content">
+    <img src="/pct.png" alt="Doctor Image" class="side-image">
+    <div class="form-content">
+      <h2>Pacientes</h2>
+      <form (submit)="agregarMedico(); $event.preventDefault();">
+        <label>Nombre:</label>
+        <input type="text" [(ngModel)]="nuevoPaciente.nombre" name="nombre" required />
+
+        <label>Email:</label>
+        <input type="text" [(ngModel)]="nuevoPaciente.email" name="email" required />
+
+        <label>Edad:</label>
+        <input type="text" [(ngModel)]="nuevoPaciente.edad" name="edad" required />
+
+        <label>Sexo:</label>
+        <select [(ngModel)]="nuevoPaciente.sexo" name="sexo" required>
+          <option value="Mujer">Mujer</option>
+          <option value="Hombre">Hombre</option>
+        </select>
+
+        <label>Número telefónico:</label>
+        <input type="text" [(ngModel)]="nuevoPaciente.telefono" name="telefono" required />
+
+        <button type="submit">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>

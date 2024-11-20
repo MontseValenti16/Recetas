@@ -1,0 +1,20 @@
+<div class="medicamentos-list">
+  <div class="header">
+    <a [routerLink]="['']" routerLinkActive="router-link-active">
+      <img src="/logoM.jpg" alt="Logo" class="logo">
+    </a>
+    <h1>Medical Description Generator</h1>
+  </div>
+  <h2>Lista de Medicamentos</h2>
+  <div class="medicamento-card" *ngFor="let medicamento of medicamentos">
+    <h3>{{ medicamento.nombre }}</h3>
+    <p><strong>Dosis:</strong> {{ medicamento.dosis }}</p>
+    <p><strong>Presentación:</strong> {{ medicamento.presentacion }}</p>
+    <p><strong>Cantidad:</strong> {{ medicamento.cantidad }}</p>
+    <p><strong>Vía de administración:</strong> {{ medicamento.viaAdministracion }}</p>
+    <div class="card-actions">
+      <button (click)="updateMedicamento(medicamento)">Editar</button>
+      <button (click)="deleteMedicamento(medicamento.id)">Eliminar</button>
+    </div>
+  </div>
+</div>

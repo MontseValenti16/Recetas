@@ -1,0 +1,35 @@
+<div class="receta-container">
+  <div class="receta-header">
+    <a [routerLink]="['/']" routerLinkActive="router-link-active">
+      <img src="/logoM.jpg" alt="Logo" class="logo">
+    </a>
+    <h1 class="receta-title">Medical Description Generator</h1>
+  </div>
+  <h2 class="receta-subtitle">Receta médica</h2>
+
+  <form (ngSubmit)="agregarReceta()">
+    <div class="form-group">
+      <label for="paciente">Paciente:</label>
+      <select id="paciente" name="paciente" [(ngModel)]="nuevaReceta.idPaciente" required>
+        <option *ngFor="let user of pacientes" [value]="user.id">{{ user.nombre }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="enfermedad">Enfermedad:</label>
+      <input type="text" id="enfermedad" name="enfermedad" [(ngModel)]="enfermedad" required />
+    </div>
+    <div class="form-group">
+      <label for="medicamento">Medicamento:</label>
+      <select id="medicamento" name="medicamento" [(ngModel)]="medicamentosSeleccionados" multiple>
+        <option *ngFor="let medi of medicamentos" [ngValue]="medi">{{ medi.nombre }}</option>
+      </select>
+    </div>
+    <div class="medicamentos-list">
+      <p *ngIf="medicamentosSeleccionados.length === 0">&lt;MEDICAMENTOS&gt;</p>
+      <ul *ngIf="medicamentosSeleccionados.length > 0">
+        <li *ngFor="let seleccionado of medicamentosSeleccionados">{{ seleccionado.nombre }}</li>
+      </ul>
+    </div>
+    <button type="submit" class="btn-generar-receta">Generar receta médica</button>
+  </form>
+</div>

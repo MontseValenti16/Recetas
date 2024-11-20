@@ -1,0 +1,71 @@
+.medicamentos-list {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background-image: url('/medic.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #eae8e8;
+  padding: 10px;
+  box-shadow: 0 0 4px  rgba(255, 255, 255, 0.2) ;
+}
+
+.logo {
+  width: 80px;
+  margin-right: 10px;
+}
+
+.header h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 30px;
+  margin-top: 20px;
+  color: #eae8e8;
+}
+
+.medicamento-card {
+  display: inline-block;
+  width: 400px;
+  padding: 15px;
+  margin: 20px;
+  background-color: #cecece;
+  color: rgb(7, 7, 7);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+.medicamento-card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.card-actions {
+  display: flex;
+  justify-content:space-between;
+  margin-top: 15px;
+}
+
+.card-actions button {
+  background-color: rgb(70, 84, 128);
+  color: #eff1f4;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card-actions button:hover {
+  background-color: #739cc1;
+}

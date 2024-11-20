@@ -1,0 +1,18 @@
+<div class="medicos-list-container">
+  <div class="header">
+    <a [routerLink]="['']" routerLinkActive="router-link-active">
+      <img src="/logoM.jpg" alt="Logo" class="logo">
+    </a>
+    <h1>Medical Description Generator</h1>
+  </div>
+  <h2>Lista de Pacientes</h2>
+  <div *ngFor="let paciente of pacientes; let i = index" class="medico-card">
+    <p><strong>Nombre:</strong> {{ paciente.nombre }}</p>
+    <p><strong>Email:</strong> {{ paciente.email }}</p>
+    <p><strong>Edad:</strong> {{ paciente.edad }}</p>
+    <p><strong>Sexo:</strong> {{ paciente.sexo }}</p>
+    <p><strong>Teléfono:</strong> {{ paciente.telefono }}</p>
+    <button (click)="updatePaciente(paciente)">Editar</button>
+    <button (click)="deletePaciente(paciente.id)">Eliminar</button>
+  </div>
+</div>
